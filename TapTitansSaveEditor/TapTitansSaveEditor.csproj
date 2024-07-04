@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+		<Nullable>enable</Nullable>
+		<PublishAot>true</PublishAot>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<Version>0.1.0</Version>
+		<Authors>Hox</Authors>
+		<Product>TapTitansSaveEditor</Product>
+		<Copyright>Copyright © 2024 Hox</Copyright>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+
+		<DebugType>none</DebugType>
+		<DebugSymbols>false</DebugSymbols>
+		<DebuggerSupport>false</DebuggerSupport>
+
+		<MetricsSupport>false</MetricsSupport>
+		<StartupHookSupport>false</StartupHookSupport>
+		<InvariantGlobalization>true</InvariantGlobalization>
+		<OptimizationPreference>Size</OptimizationPreference>
+		<AutoreleasePoolSupport>false</AutoreleasePoolSupport>
+		<EnableUnsafeBinaryFormatterSerialization>false</EnableUnsafeBinaryFormatterSerialization>
+		<EnableUnsafeUTF7Encoding>false</EnableUnsafeUTF7Encoding>
+
+		<EventSourceSupport>false</EventSourceSupport>
+		<HttpActivityPropagationSupport>false</HttpActivityPropagationSupport>
+		<MetadataUpdaterSupport>false</MetadataUpdaterSupport>
+		<StackTraceSupport>false</StackTraceSupport>
+
+		<UseNativeHttpHandler>true</UseNativeHttpHandler>
+		<UseSystemResourceKeys>true</UseSystemResourceKeys>
+
+		<IlcFoldIdenticalMethodBodies>true</IlcFoldIdenticalMethodBodies>
+		<IlcScanReflection>false</IlcScanReflection>
+		<IlcDisableReflection>true</IlcDisableReflection>
+
+		<IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+	</PropertyGroup>
+
+	<!-- Menial PE linker args to shave off a few KB -->
+	<ItemGroup Condition="'$(OS)'=='Windows_NT'">
+		<LinkerArg Include="/emittoolversioninfo:no" />
+		<LinkerArg Include="/emitpogophaseinfo" />
+	</ItemGroup>
+
+	<PropertyGroup Condition="'$(OS)'!='Windows_NT'">
+		<DefineConstants>UNIX</DefineConstants>
+	</PropertyGroup>
+
+</Project>
